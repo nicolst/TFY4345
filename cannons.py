@@ -1,6 +1,5 @@
 import rk4
 import numpy as np
-import math
 
 
 class DragCannon2DIsothermal(rk4.RK4Particle):
@@ -8,7 +7,7 @@ class DragCannon2DIsothermal(rk4.RK4Particle):
     b2_m = 4.0E-5
 
     def acc(self, coords: np.ndarray, vel: np.ndarray):
-        rho_ratio = math.exp(-coords[1] / self.y0)
+        rho_ratio = np.exp(-coords[1] / self.y0)
         direction = -np.sign(vel)
         if direction[0] > 0:
             print("ERROR")
@@ -33,7 +32,7 @@ class DragCannon2DAdiabatic(rk4.RK4Particle):
     T0 = 288
 
     def acc(self, coords: np.ndarray, vel: np.ndarray):
-        rho_ratio = math.pow(1 - self.a * coords[1] / self.T0, self.alpha)
+        rho_ratio = np.power(1 - self.a * coords[1] / self.T0, self.alpha)
         direction = -np.sign(vel)
         if direction[0] > 0:
             print("ERROR")
